@@ -25,28 +25,26 @@ const styles = {
   position: "relative",
 };
 
-function DrugDrop() {
+export default function DrugDrop() {
   const [board, setBoard] = useState({
-    a: { id: 1, top: 20, left: 20, el: <AddLocation /> },
-    b: { id: 2, top: 60, left: 20, el: <Comment /> },
-    c: { id: 3, top: 100, left: 20, el: <Abc /> },
-    d: { id: 4, top: 140, left: 20, el: <AssistWalker /> },
-    e: { id: 5, top: 180, left: 20, el: <AttachFile /> },
-    f: { id: 6, top: 220, left: 20, el: <PrintOut /> },
-    g: { id: 7, top: 260, left: 20, el: <QrCodeScanner /> },
-    h: { id: 8, top: 300, left: 20, el: <AppsStore /> },
-    r: { id: 9, top: 340, left: 20, el: <NearMe /> },
+    a: { top: 20, left: 20, el: <AddLocation /> },
+    b: { top: 60, left: 20, el: <Comment /> },
+    c: { top: 100, left: 20, el: <Abc /> },
+    d: { top: 140, left: 20, el: <AssistWalker /> },
+    e: { top: 180, left: 20, el: <AttachFile /> },
+    f: { top: 220, left: 20, el: <PrintOut /> },
+    g: { top: 260, left: 20, el: <QrCodeScanner /> },
+    h: { top: 300, left: 20, el: <AppsStore /> },
+    r: { top: 340, left: 20, el: <NearMe /> },
   });
 
-  console.log(board, "77-2465-2356-535-12");
-
-  function generateUniqueKey() {
-    const uniKey = new Date();
-    return uniKey;
+  function UniKey() {
+    const newId = new Date();
+    return `copy_${newId}`;
   }
 
   const moveBox = useCallback(
-    (id, left, top, isCopy) => {
+    (id, left, top) => {
       if (left >= 20 && left <= 590 && top >= 20 && top <= 500) {
         setBoard((prevBoard) => ({
           ...prevBoard,
@@ -54,12 +52,11 @@ function DrugDrop() {
             ...prevBoard[id],
             top,
             left,
-            id,
           },
         }));
       }
-      if (!isCopy) {
-        const newId = generateUniqueKey();
+      if (id.length === 1) {
+        const newId = UniKey();
         const updatedBoard = (prevBoard) => ({
           ...board,
           [newId]: {
@@ -73,7 +70,7 @@ function DrugDrop() {
     },
     [board]
   );
-
+  console.log(board, "124124");
   const [{ isOver }, drop] = useDrop(
     () => ({
       accept: ItemTypes.ICON,
@@ -81,7 +78,7 @@ function DrugDrop() {
         const delta = monitor.getDifferenceFromInitialOffset();
         const left = Math.round(item.left + delta.x);
         const top = Math.round(item.top + delta.y);
-        moveBox(item.id, left, top, false);
+        moveBox(item.id, left, top);
         return undefined;
       },
       collect: (monitor) => ({
@@ -112,5 +109,3 @@ function DrugDrop() {
     </>
   );
 }
-
-export default DrugDrop;

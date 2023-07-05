@@ -3,20 +3,17 @@ import { useDrag } from "react-dnd";
 import { ItemTypes } from "./ItemTypes.js";
 
 function Icon({ id, left, top, el }) {
-  const [isDragging, drag] = useDrag(
-    () => ({
-      type: ItemTypes.ICON,
-      item: {
-        id,
-        left,
-        top,
-      },
-      collect: (monitor) => ({
-        isDragging: monitor.isDragging(),
-      }),
+  const [isDragging, drag] = useDrag(() => ({
+    type: ItemTypes.ICON,
+    item: {
+      id,
+      left,
+      top,
+    },
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging(),
     }),
-    [id, left, top]
-  );
+  }));
 
   const style = {
     display: "flex",
@@ -32,7 +29,7 @@ function Icon({ id, left, top, el }) {
   };
 
   return (
-    <div className="icon" ref={drag} style={{ ...style, left, top }}>
+    <div className="icon" ref={drag} style={{ ...style, id, left, top }}>
       {el}
     </div>
   );
