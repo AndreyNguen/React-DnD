@@ -30,7 +30,7 @@ function Form() {
           className="loadMap"
           value={image}
           onChange={handleChange}
-          placeholder="Let's loading a map"
+          placeholder="Загрузить файл"
         />
       </label>
       <button type="submit" className="btn">
