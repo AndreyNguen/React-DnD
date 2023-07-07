@@ -7,41 +7,22 @@
 .container {
   display: flex;
   position: relative;
+  max-height: 100%;
 }
 
-.icons {
+.items {
   display: flex;
-  flex-direction: column;
-  border-radius: 7px;
+  justify-content: space-around;
+  position: relative;
+  width: 30px;
 }
 
 .board {
-  width: 900px;
-  height: 600px;
-  border: 2px solid black;
-  margin-left: 100px;
-  margin-top: 20px;
-  position: relative;
-}
-
-svg {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 3.5px;
-}
-
-.btn {
-  background-color: lightblue;
-  border-bottom-right-radius: 10px;
-  border-top-right-radius: 10px;
+  width: 300px;
+  height: 300px;
   border: 1px solid black;
-  border-left: hidden;
-}
-
-#form {
-  border: 1px solid black;
-  width: 250px;
+  border-radius: 10px;
+  margin-left: 10px;
 }
 
 img {
