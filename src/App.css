@@ -28,3 +28,8 @@
 img {
   border-radius: 10px;
 }
+
+.base64img {
+  max-width: 300px;
+  height: auto;
+}

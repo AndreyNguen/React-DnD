@@ -107,7 +107,7 @@ export default function Board() {
           <img alt="" width={"300px"} src={Image} />
         </div>
       </div>
-      <ImageUploaderBase64 />
+      {/* <ImageUploaderBase64 /> */}
     </>
   );
 }

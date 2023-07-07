@@ -36,18 +36,14 @@ export default function Item({ id, left, top, el, newId }) {
     [id, left, top]
   );
 
-  const handleTextChange = (e) => {
-    setText(e.target.value);
-  };
-
   return (
     <div className="icon" ref={drag} style={{ ...style, left, top }}>
       {el}
-      {newId && isDragging && (
+      {isDragging && newId && (
         <input
           type="text"
           value={text}
-          onChange={handleTextChange}
+          onChange={(e) => setText(e.target.value)}
           style={{ marginLeft: "10px" }}
         />
       )}

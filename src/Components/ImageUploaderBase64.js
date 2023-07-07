@@ -9,8 +9,8 @@ export default function ImageUploaderBase64() {
     const reader = new FileReader();
 
     reader.onloadend = () => {
-      const base64String = reader.result;
-      setImage(base64String);
+      const base64 = reader.result;
+      setImage(base64);
     };
 
     reader.readAsDataURL(file);
@@ -18,8 +18,15 @@ export default function ImageUploaderBase64() {
 
   return (
     <div>
-      <input type="file" onChange={handleImageUpload} />
-      {image && <img src={image} alt="Загруженное изображение" />}
+      {image ? (
+        <>
+          <img className="base64img" src={image} alt="" />
+          <br />
+          <button onClick={() => setImage("")}>Удалить</button>
+        </>
+      ) : (
+        <input type="file" onChange={handleImageUpload} />
+      )}
     </div>
   );
 }
